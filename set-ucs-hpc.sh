@@ -170,5 +170,70 @@ interface1XML="
 writeStatus "Setting configuration on adaptor 1"
 result=$(accessUCS 'POST' "https://${Server}/nuova" "${interface1XML}")
 writeStatus "Adaptor 1 Configuration Complete"
+
+biosSettingsXML="
+  <configConfMo cookie='${authCookie}' dn='sys/rack-unit-1/bios/bios-settings' inHierarchical='true'>
+    <inConfig>
+      <biosSettings rn='bios-settings'>
+      <biosVfIntelVTForDirectedIO rn='Intel-VT-for-directed-IO' vpIntelVTDATSSupport='enabled' vpIntelVTDCoherencySupport='disabled' vpIntelVTForDirectedIO='disabled'></biosVfIntelVTForDirectedIO>
+      <biosVfSelectMemoryRASConfiguration rn='SelectMemory-RAS-configuration' vpSelectMemoryRASConfiguration='maximum-performance'></biosVfSelectMemoryRASConfiguration>
+      <biosVfProcessorC6Report rn='Processor-C6-Report' vpProcessorC6Report='disabled'></biosVfProcessorC6Report>
+      <biosVfIntelHyperThreadingTech rn='Intel-HyperThreading-Tech' vpIntelHyperThreadingTech='disabled'></biosVfIntelHyperThreadingTech>
+      <biosVfEnhancedIntelSpeedStepTech rn='Enhanced-Intel-SpeedStep-Tech' vpEnhancedIntelSpeedStepTech='enabled'></biosVfEnhancedIntelSpeedStepTech>
+      <biosVfIntelVirtualizationTechnology rn='Intel-Virtualization-Technology' vpIntelVirtualizationTechnology='disabled'></biosVfIntelVirtualizationTechnology>
+      <biosVfMemoryMappedIOAbove4GB rn='Memory-mapped-IO-above-4GB' vpMemoryMappedIOAbove4GB='enabled'></biosVfMemoryMappedIOAbove4GB>
+      <biosVfCPUPerformance rn='CPU-Performance' vpCPUPerformance='enterprise'></biosVfCPUPerformance>
+      <biosVfNUMAOptimized rn='NUMA-optimized' vpNUMAOptimized='enabled'></biosVfNUMAOptimized>
+      <biosVfConsoleRedirection rn='Console-redirection' vpBaudRate='115200' vpConsoleRedirection='disabled' vpFlowControl='none' vpTerminalType='vt100'></biosVfConsoleRedirection>
+      <biosVfIntelTurboBoostTech rn='Intel-Turbo-Boost-Tech' vpIntelTurboBoostTech='enabled'></biosVfIntelTurboBoostTech>
+      <biosVfExecuteDisableBit rn='Execute-Disable-Bit' vpExecuteDisableBit='enabled'></biosVfExecuteDisableBit>
+      <biosVfOSBootWatchdogTimer rn='OS-Boot-Watchdog-Timer-Param' vpOSBootWatchdogTimer='disabled'></biosVfOSBootWatchdogTimer>
+      <biosVfOSBootWatchdogTimerPolicy rn='OS-Boot-Watchdog-Timer-Policy' vpOSBootWatchdogTimerPolicy='power-off'></biosVfOSBootWatchdogTimerPolicy>
+      <biosVfOSBootWatchdogTimerTimeout rn='OS-Boot-Watchdog-Timer-Time-Out' vpOSBootWatchdogTimerTimeout='10-minutes'></biosVfOSBootWatchdogTimerTimeout>
+      <biosVfHardwarePrefetch rn='Hardware-Prefetch' vpHardwarePrefetch='enabled'></biosVfHardwarePrefetch>
+      <biosVfAdjacentCacheLinePrefetch rn='Adjacent-Cache-Line-Prefetch' vpAdjacentCacheLinePrefetch='enabled'></biosVfAdjacentCacheLinePrefetch>
+      <biosVfFRB2Enable rn='FRB2-Enable' vpFRB2Enable='enabled'></biosVfFRB2Enable>
+      <biosVfProcessorC1E rn='Processor-C1E' vpProcessorC1E='disabled'></biosVfProcessorC1E>
+      <biosVfTPMControl rn='TPM-Control' vpTPMControl='disabled'></biosVfTPMControl>
+      <biosVfTXTSupport rn='TXT-Support' vpTXTSupport='disabled'></biosVfTXTSupport>
+      <biosVfDCUPrefetch rn='DCU-Prefetch' vpStreamerPrefetch='enabled' vpIPPrefetch='enabled'></biosVfDCUPrefetch>
+      <biosVfLegacyUSBSupport rn='LegacyUSB-Support' vpLegacyUSBSupport='disabled'></biosVfLegacyUSBSupport>
+      <biosVfLOMPortOptionROM rn='LOMPort-OptionROM' vpLOMPortsAllState='Disabled' vpLOMPort0State='Disabled' vpLOMPort1State='Disabled'></biosVfLOMPortOptionROM>
+      <biosVfPCISlotOptionROMEnable rn='PCI-Slot-OptionROM-Enable' vpSlot1State='Enabled' vpSlot2State='Enabled' vpSlot3State='Enabled' vpSlot4State='Enabled' vpSlot5State='Enabled' vpSlot6State='Enabled' vpSlotMLOMState='Enabled' vpSlotMRAIDState='Enabled' vpSlotMRAIDLinkSpeed='Auto' vpSlotN1State='Enabled' vpSlotN2State='Enabled' vpSlot1LinkSpeed='Auto' vpSlot2LinkSpeed='Auto' vpSlot3LinkSpeed='Auto' vpSlot4LinkSpeed='Auto' vpSlot5LinkSpeed='Auto' vpSlot6LinkSpeed='Auto' vpSlotMLOMLinkSpeed='Auto' vpSlotFrontNvme1LinkSpeed='Auto' vpSlotFrontNvme2LinkSpeed='Auto' vpSlotRearNvme1LinkSpeed='Auto' vpSlotRearNvme2LinkSpeed='Auto' vpSlotRearNvme1State='Enabled' vpSlotRearNvme2State='Enabled'></biosVfPCISlotOptionROMEnable>
+      <biosVfExtendedAPIC rn='Extended-APIC' vpExtendedAPIC='Disabled'></biosVfExtendedAPIC>
+      <biosVfCDNEnable rn='CDN-Enable' vpCDNEnable='Enabled'></biosVfCDNEnable>
+      <biosVfPowerOnPasswordSupport rn='POP-Support' vpPOPSupport='Disabled'></biosVfPowerOnPasswordSupport>
+      <biosVfVgaPriority rn='VgaPriority' vpVgaPriority='Onboard'></biosVfVgaPriority>
+      <biosVfBootPerformanceMode rn='Boot-Performance-Mode' vpBootPerformanceMode='Max Performance'></biosVfBootPerformanceMode>
+      <biosVfCPUEnergyPerformance rn='CPU-EngPerfBias' vpCPUEnergyPerformance='balanced-performance'></biosVfCPUEnergyPerformance>
+      <biosVfCmciEnable rn='Cmci-Enable' vpCmciEnable='Enabled'></biosVfCmciEnable>
+      <biosVfHWPMEnable rn='HWPM-Enable' vpHWPMEnable='HWPM Native Mode'></biosVfHWPMEnable>
+      <biosVfPStateCoordType rn='p-state-coord' vpPStateCoordType='HW ALL'></biosVfPStateCoordType>
+      <biosVfPackageCStateLimit rn='Package-CState-Limit' vpPackageCStateLimit='C0 C1 State'></biosVfPackageCStateLimit>
+      <biosVfPatrolScrub rn='Patrol-Scrub-Param' vpPatrolScrub='Enabled'></biosVfPatrolScrub>
+      <biosVfPwrPerfTuning rn='Pwr-Perf-Tuning' vpPwrPerfTuning='os'></biosVfPwrPerfTuning>
+      <biosVfWorkLoadConfig rn='work-load-config' vpWorkLoadConfig='I/O Sensitive'></biosVfWorkLoadConfig>
+      <biosVfSataModeSelect rn='Pch-Sata-Mode' vpSataModeSelect='AHCI'></biosVfSataModeSelect>
+      <biosVfPSata rn='PSata' vpPSata='AHCI'></biosVfPSata>
+      <biosVfCoreMultiProcessing rn='Core-MultiProcessing' vpCoreMultiProcessing='all'></biosVfCoreMultiProcessing>
+      <biosVfUSBPortsConfig rn='USB-Ports-Config' vpUsbPortRear='enabled' vpUsbPortFront='enabled' vpUsbPortInternal='enabled' vpUsbPortKVM='enabled' vpUsbPortSDCard='disabled'></biosVfUSBPortsConfig>
+      <biosVfIMCInterleave rn='imc-interleave' vpIMCInterleave='Auto'></biosVfIMCInterleave>
+      <biosVfSubNumaClustering rn='sub-numa-cluster' vpSNC='Disabled'></biosVfSubNumaClustering>
+      <biosVfKTIPrefetch rn='kti-prefetch' vpKTIPrefetch='Enabled'></biosVfKTIPrefetch>
+      <biosVfXPTPrefetch rn='xpt-prefetch' vpXPTPrefetch='Disabled'></biosVfXPTPrefetch>
+      <biosVfLLCPrefetch rn='LLC-Prefetch' vpLLCPrefetch='Disabled'></biosVfLLCPrefetch>
+      <biosVfIPV6PXE rn='IPv6-Pxe' vpIPV6PXE='Disabled'></biosVfIPV6PXE>
+      <biosVfEnergyEfficientTurbo rn='energy-efficient-turbo' vpEnergyEfficientTurbo='Disabled'></biosVfEnergyEfficientTurbo>
+      <biosVfAutoCCState rn='auto-cc-state' vpAutoCCState='Disabled'></biosVfAutoCCState>
+      <biosVfEPPProfile rn='epp-profile' vpEPPProfile='Performance'></biosVfEPPProfile>
+      <biosVfBmeDmaMitigation rn='bme-dma-mitigation' vpBmeDmaMitigation='Disabled'></biosVfBmeDmaMitigation>
+      </biosSettings>
+    </inConfig>
+  </configConfMo>
+"
+writeStatus "Starting BIOS Settings"
+result=$(accessUCS "POST" "https://${Server}/nuova" "${biosSettingsXML}")
+writeStatus "BIOS Settings Complete"
+
 #Final Cleanup.
 exitRoutine
