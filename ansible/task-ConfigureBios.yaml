@@ -1,0 +1,120 @@
+---
+
+   - name: Configure BIOS through XML API
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo dn='sys/rack-unit-1/bios/bios-settings' inHierarchical='true'>
+        <inConfig>
+        <biosSettings rn='bios-settings'>
+        <!-- HPC Recommendation is to disable Virtual Technology for Direct IO. -->
+        <biosVfIntelVTForDirectedIO rn='Intel-VT-for-directed-IO' vpIntelVTDATSSupport='disabled' vpIntelVTDCoherencySupport='disabled' vpIntelVTForDirectedIO='disabled'></biosVfIntelVTForDirectedIO>
+        <!-- HPC Recommendation is for Memory RAS Configuration to be set to Maxium Performance -->
+        <biosVfSelectMemoryRASConfiguration rn='SelectMemory-RAS-configuration' vpSelectMemoryRASConfiguration='maximum-performance'></biosVfSelectMemoryRASConfiguration>
+        <!-- HPC Recommendation is to disable C6 report. OS will not recieve report preventing the OS from placing the processors in a lower power state.-->
+        <!--   This will result in increased power consumption for idle servers. -->
+        <biosVfProcessorC6Report rn='Processor-C6-Report' vpProcessorC6Report='disabled'></biosVfProcessorC6Report>
+        <!-- HPC recommendation is to disabling hyperthreading for HPC systems. -->
+        <!--   CAUTION: We are not compliant with HPC recommendations with this setting in this script.-->
+        <biosVfIntelHyperThreadingTech rn='Intel-HyperThreading-Tech' vpIntelHyperThreadingTech='enabled'></biosVfIntelHyperThreadingTech>
+        <!-- HPC recommendation is to enable Intel Speed Step Technology. -->
+        <biosVfEnhancedIntelSpeedStepTech rn='Enhanced-Intel-SpeedStep-Tech' vpEnhancedIntelSpeedStepTech='enabled'></biosVfEnhancedIntelSpeedStepTech>
+        <!-- HPC recommendation is to disable Intel Virtualization Technology. -->
+        <biosVfIntelVirtualizationTechnology rn='Intel-Virtualization-Technology' vpIntelVirtualizationTechnology='disabled'></biosVfIntelVirtualizationTechnology>
+        <!-- Default setting for Mapped IO above 4K is retianed. No HPC recommendation documented. --> 
+        <!-- Default setting retained for Adjacent Cache Line Prefetch. -->
+        <biosVfMemoryMappedIOAbove4GB rn='Memory-mapped-IO-above-4GB' vpMemoryMappedIOAbove4GB='enabled'></biosVfMemoryMappedIOAbove4GB>
+        <!-- HPC recommendation is for CPU Performance to be set to enterprise -->
+        <biosVfCPUPerformance rn='CPU-Performance' vpCPUPerformance='enterprise'></biosVfCPUPerformance>
+        <!-- HPC recommendation is for NUMA Optimization to be enabled -->
+        <biosVfNUMAOptimized rn='NUMA-optimized' vpNUMAOptimized='enabled'></biosVfNUMAOptimized>
+        <!-- Default setting for Conole Redirection is retained. No performance impact for these settings. Disabled for security purposes. -->
+        <biosVfConsoleRedirection rn='Console-redirection' vpBaudRate='115200' vpConsoleRedirection='disabled' vpFlowControl='none' vpTerminalType='vt100'></biosVfConsoleRedirection>
+        <!-- HPC recommendation is for Turbo Boost to be enabled. -->
+        <biosVfIntelTurboBoostTech rn='Intel-Turbo-Boost-Tech' vpIntelTurboBoostTech='enabled'></biosVfIntelTurboBoostTech>
+        <!-- Default setting for Exexute-Bit-Disabled retained. Enabled for security reasons. -->
+        <biosVfExecuteDisableBit rn='Execute-Disable-Bit' vpExecuteDisableBit='enabled'></biosVfExecuteDisableBit>
+        <!-- Default settings retained for OS Boot Watchdog Timers. No impact to HPC for these settings. -->
+        <biosVfOSBootWatchdogTimer rn='OS-Boot-Watchdog-Timer-Param' vpOSBootWatchdogTimer='disabled'></biosVfOSBootWatchdogTimer>
+        <biosVfOSBootWatchdogTimerPolicy rn='OS-Boot-Watchdog-Timer-Policy' vpOSBootWatchdogTimerPolicy='power-off'></biosVfOSBootWatchdogTimerPolicy>
+        <biosVfOSBootWatchdogTimerTimeout rn='OS-Boot-Watchdog-Timer-Time-Out' vpOSBootWatchdogTimerTimeout='10-minutes'></biosVfOSBootWatchdogTimerTimeout>
+        <!-- Default setting retained for Hardware Prefetch. Cisco recommends this remain on for all configurations. -->
+        <biosVfHardwarePrefetch rn='Hardware-Prefetch' vpHardwarePrefetch='enabled'></biosVfHardwarePrefetch>
+        <!-- Default setting retained for Adjacent Cache Line Prefetch. -->
+        <!--    Note: No recommendation provided for performance  -->
+        <biosVfAdjacentCacheLinePrefetch rn='Adjacent-Cache-Line-Prefetch' vpAdjacentCacheLinePrefetch='enabled'></biosVfAdjacentCacheLinePrefetch>
+        <!-- Default setting retained for Fault Resilent Booting. Peformance is not impacted by this setting. -->
+        <biosVfFRB2Enable rn='FRB2-Enable' vpFRB2Enable='enabled'></biosVfFRB2Enable>
+        <!-- HPC recommendation is for Processor C1E to be disabled. -->
+        <biosVfProcessorC1E rn='Processor-C1E' vpProcessorC1E='disabled'></biosVfProcessorC1E>
+        <!-- Default setting retained for TPM Control. Performance is not impacted by this setting --> 
+        <biosVfTPMControl rn='TPM-Control' vpTPMControl='disabled'></biosVfTPMControl>
+        <!-- Default setting retained for TPM TXT Support. Performance is not impacted by this setting --> 
+        <biosVfTXTSupport rn='TXT-Support' vpTXTSupport='disabled'></biosVfTXTSupport>
+        <!-- Default setting retained for DCU Prefetcher -->
+        <biosVfDCUPrefetch rn='DCU-Prefetch' vpStreamerPrefetch='enabled' vpIPPrefetch='enabled'></biosVfDCUPrefetch>
+        <!-- Default setting retained for Legacy USB Support -->
+        <biosVfLegacyUSBSupport rn='LegacyUSB-Support' vpLegacyUSBSupport='disabled'></biosVfLegacyUSBSupport>
+        <!-- LOM Option ROM Disabled. This script uses the MLOM for PXE -->
+        <biosVfLOMPortOptionROM rn='LOMPort-OptionROM' vpLOMPortsAllState='Disabled' vpLOMPort0State='Disabled' vpLOMPort1State='Disabled'></biosVfLOMPortOptionROM>
+        <!-- PCI slots Disabled. MLOM, M.2 and HBA enabled --> 
+        <biosVfPCISlotOptionROMEnable rn='PCI-Slot-OptionROM-Enable' vpSlot1State='Disabled' vpSlot2State='Disabled' vpSlot3State='Disabled' vpSlot4State='Disabled' vpSlot5State='Disabled' vpSlot6State='Disabled' vpSlotMLOMState='Enabled' vpSlotMRAIDState='Enabled' vpSlotMRAIDLinkSpeed='Auto' vpSlotN1State='Enabled' vpSlotN2State='Enabled' vpSlot1LinkSpeed='Auto' vpSlot2LinkSpeed='Auto' vpSlot3LinkSpeed='Auto' vpSlot4LinkSpeed='Auto' vpSlot5LinkSpeed='Auto' vpSlot6LinkSpeed='Auto' vpSlotMLOMLinkSpeed='Auto' vpSlotFrontNvme1LinkSpeed='Auto' vpSlotFrontNvme2LinkSpeed='Auto' vpSlotRearNvme1LinkSpeed='Auto' vpSlotRearNvme2LinkSpeed='Auto' vpSlotRearNvme1State='Enabled' vpSlotRearNvme2State='Enabled'></biosVfPCISlotOptionROMEnable>
+        <!-- Default setting retained for Extended Advanced Programmable Interrupt Controller -->
+        <biosVfExtendedAPIC rn='Extended-APIC' vpExtendedAPIC='Disabled'></biosVfExtendedAPIC>
+        <!-- Default setting retained for Consistent Device Naming -->
+        <biosVfCDNEnable rn='CDN-Enable' vpCDNEnable='Enabled'></biosVfCDNEnable>
+        <!-- Default setting retained for Power On Password support -->
+        <biosVfPowerOnPasswordSupport rn='POP-Support' vpPOPSupport='Disabled'></biosVfPowerOnPasswordSupport>
+        <!-- Default setting retained for VGA Priority -->
+        <biosVfVgaPriority rn='VgaPriority' vpVgaPriority='Onboard'></biosVfVgaPriority>
+        <!-- Default setting retained for Boot Performance Mode --> 
+        <biosVfBootPerformanceMode rn='Boot-Performance-Mode' vpBootPerformanceMode='Max Performance'></biosVfBootPerformanceMode>
+        <!-- HPC recommendation is for Energy Performance to be set to Performance-->
+        <biosVfCPUEnergyPerformance rn='CPU-EngPerfBias' vpCPUEnergyPerformance='performance'></biosVfCPUEnergyPerformance>
+        <!-- Default setting retained for Corrected Machine Check Interrupt Enabled -->
+        <biosVfCmciEnable rn='Cmci-Enable' vpCmciEnable='Enabled'></biosVfCmciEnable>
+        <!-- Default setting retained for Hardware Power Management -->
+        <biosVfHWPMEnable rn='HWPM-Enable' vpHWPMEnable='HWPM Native Mode'></biosVfHWPMEnable>
+        <!-- HPC Recommendation is for Power State Coordinator to be set to HW ALL-->
+        <biosVfPStateCoordType rn='p-state-coord' vpPStateCoordType='HW ALL'></biosVfPStateCoordType>
+        <!-- HPC recommmendation is for Package CState Limit to be set to No Limit -->
+        <biosVfPackageCStateLimit rn='Package-CState-Limit' vpPackageCStateLimit='No Limit'></biosVfPackageCStateLimit>
+        <!-- Default setting retained for Memory Patrol Scrub --> 
+        <biosVfPatrolScrub rn='Patrol-Scrub-Param' vpPatrolScrub='Enabled'></biosVfPatrolScrub>
+        <!-- HPC recommendation is for Power Performance Tuning to be set to os -->
+        <biosVfPwrPerfTuning rn='Pwr-Perf-Tuning' vpPwrPerfTuning='os'></biosVfPwrPerfTuning>
+        <!-- HPC recommendation for Workload Config is Balanced -->
+        <biosVfWorkLoadConfig rn='work-load-config' vpWorkLoadConfig='Balanced'></biosVfWorkLoadConfig>
+        <!-- Default setting retained for Pch-Sata controller mode -->
+        <biosVfSataModeSelect rn='Pch-Sata-Mode' vpSataModeSelect='AHCI'></biosVfSataModeSelect>
+        <biosVfPSata rn='PSata' vpPSata='AHCI'></biosVfPSata>
+        <!-- Default setting retained for Multi Core Processing - All cores active -->
+        <biosVfCoreMultiProcessing rn='Core-MultiProcessing' vpCoreMultiProcessing='all'></biosVfCoreMultiProcessing>
+        <!-- Default settings retained for Activation of USB ports. -->
+        <biosVfUSBPortsConfig rn='USB-Ports-Config' vpUsbPortRear='enabled' vpUsbPortFront='enabled' vpUsbPortInternal='enabled' vpUsbPortKVM='enabled' vpUsbPortSDCard='disabled'></biosVfUSBPortsConfig>
+        <!-- HPC recommendation is for IMC Ingerleave to remain at Auto -->
+        <biosVfIMCInterleave rn='imc-interleave' vpIMCInterleave='Auto'></biosVfIMCInterleave>
+        <!-- HPC recommendation is for sub numa clustering to be disabled -->
+        <biosVfSubNumaClustering rn='sub-numa-cluster' vpSNC='Disabled'></biosVfSubNumaClustering>
+        <!-- Default setting retained for KTI Prefech -->
+        <biosVfKTIPrefetch rn='kti-prefetch' vpKTIPrefetch='Enabled'></biosVfKTIPrefetch>
+        <!-- HPC recommencation is for XPT Prefetch to be disabled -->
+        <biosVfXPTPrefetch rn='xpt-prefetch' vpXPTPrefetch='Disabled'></biosVfXPTPrefetch>
+        <!-- HPC recommencation is for LLC Prefetch to be disabled -->
+        <biosVfLLCPrefetch rn='LLC-Prefetch' vpLLCPrefetch='Disabled'></biosVfLLCPrefetch>
+        <!-- Default setting retained for IPv6 PXE boot to be disabled -->
+        <biosVfIPV6PXE rn='IPv6-Pxe' vpIPV6PXE='Disabled'></biosVfIPV6PXE>
+        <!-- Default setting retained for Energy Efficient Turbo -->
+        <biosVfEnergyEfficientTurbo rn='energy-efficient-turbo' vpEnergyEfficientTurbo='Disabled'></biosVfEnergyEfficientTurbo>
+        <!-- Default setting retained for Auto CC State -->
+        <biosVfAutoCCState rn='auto-cc-state' vpAutoCCState='Disabled'></biosVfAutoCCState>
+        <!-- HPC recommendation is for Energy Performance Profile  is Performance -->
+        <biosVfEPPProfile rn='epp-profile' vpEPPProfile='Performance'></biosVfEPPProfile>
+        <!-- Default setting retained for bme-dma-mitigation retained -->
+        <biosVfBmeDmaMitigation rn='bme-dma-mitigation' vpBmeDmaMitigation='Disabled'></biosVfBmeDmaMitigation>
+        </biosSettings>
+        </inConfig>
+        </configConfMo>

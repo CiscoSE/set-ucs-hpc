@@ -1,0 +1,17 @@
+---
+
+    - name: Power On the Server through XML API
+      imc_rest:
+        hostname: '{{imc_host}}'
+        username: '{{imc_user}}'
+        password: '{{imc_password}}'
+        validate_certs: no
+        content: |
+          <configConfMo><inConfig>
+          <computeRackUnit dn="sys/rack-unit-1" adminPower="up"/>
+          </inConfig></configConfMo>
+
+    - name: Pause for server to boot
+      pause:
+        seconds: 40
+

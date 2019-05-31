@@ -1,0 +1,68 @@
+---
+
+   - name: Reset MLOM to factory default through IMC API
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo cookie='${authCookie}' dn='sys/rack-unit-1/adaptor-MLOM' inHierarchical='false'>
+        <inConfig>
+        <adaptorUnit adminState='adaptor-reset-default' dn='sys/rack-unit-1/adaptor-MLOM' status='modified' />
+        </inConfig>
+        </configConfMo>
+
+   - name: Disable LLDP on MLOM through IMC API
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo dn='sys/rack-unit-1/adaptor-MLOM' inHierarchical='false'>
+        <inConfig>
+        <adaptorUnit id='MLOM'>
+        <adaptorGenProfile rn='general' lldp='Disabled'></adaptorGenProfile>
+        </adaptorUnit>
+        </inConfig>
+        </configConfMo>
+
+   - name: Configure MLOM Port 1
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+          <configConfMo dn='sys/rack-unit-1/adaptor-MLOM/host-eth-eth0' inHierarchical='true'>
+          <inConfig>
+          <!--Setting the MTU to 9000. Default is 1500. Enabling PXE Boot-->
+          <adaptorHostEthIf name='eth0' mtu='9000' pxeBoot='Enabled' rn='host-eth-eth0'>
+          <!--Setting no VLAN ID and configuring for trunk. In this configuration same as an access port-->
+          <adaptorEthGenProfile rn='general' vlan='NONE' vlanMode='TRUNK'></adaptorEthGenProfile>
+          <adaptorEthRecvQueueProfile rn='eth-rcv-q' count='4' ringSize='512'></adaptorEthRecvQueueProfile>
+          <adaptorEthWorkQueueProfile rn='eth-work-q' count='1' ringSize='256'></adaptorEthWorkQueueProfile>
+          </adaptorHostEthIf>
+          </inConfig>
+          </configConfMo>
+
+   - name: Configure MLOM Port 2
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+          <configConfMo dn='sys/rack-unit-1/adaptor-MLOM/host-eth-eth1' inHierarchical='true'>
+          <inConfig>
+          <!--Setting the MTU to 9000. Default is 1500. Enabling PXE Boot-->
+          <adaptorHostEthIf name='eth1' mtu='9000' pxeBoot='Enabled' rn='host-eth-eth1'>
+          <!--Setting no VLAN ID and configuring for trunk. In this configuration same as an access port-->
+          <adaptorEthGenProfile rn='general' vlan='NONE' vlanMode='TRUNK'></adaptorEthGenProfile>
+          <adaptorEthRecvQueueProfile rn='eth-rcv-q' count='4' ringSize='512'></adaptorEthRecvQueueProfile>
+          <adaptorEthWorkQueueProfile rn='eth-work-q' count='1' ringSize='256'></adaptorEthWorkQueueProfile>
+          </adaptorHostEthIf>
+          </inConfig>
+          </configConfMo>
+

@@ -1,0 +1,10 @@
+---
+
+- name: Configure C Series Servers in inventory file
+  gather_facts: no
+  connection: local
+  hosts: imc
+  tasks:
+  - import_tasks: task-PowerOnServer.yaml
+  - import_tasks: task-ConfigureBios.yaml
+  - import_tasks: task-ConfigureVIC.yaml
