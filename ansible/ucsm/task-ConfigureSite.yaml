@@ -1,0 +1,11 @@
+---
+
+  - name: Create Site
+    ucs_org:
+      hostname: "{{ ucsm_host }}"
+      username: "{{ ucsm_user }}"
+      password: "{{ ucsm_password }}"
+      org_name: TestSite
+      description: Hopefully we get this right the first time
+
+
