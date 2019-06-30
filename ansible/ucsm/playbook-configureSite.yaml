@@ -1,0 +1,9 @@
+---
+
+  - Name: HPC Template
+    gather_facts: no
+    connection: local
+    hosts: ucsm
+    tasks:
+    - import_tasks: task-ConfigureSite.yaml
+
