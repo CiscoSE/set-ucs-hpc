@@ -4,6 +4,15 @@
   gather_facts: no
   connection: local
   hosts: ucsm
+  vars:
+    - ucs_site_name: TestSite
+    - ucs_site_description: Lets see how this turns out
+    - deployment_state: present
+    - vlans:
+        mgmtVlan:
+         id: "50"
+        vmotion:
+         id: "51"  
   tasks:
-  - import_tasks: task-ConfigureSite.yaml
-
+  #- import_tasks: task-ConfigureSite.yaml
+  - import_tasks: task-CreateSystemVLANs.yaml

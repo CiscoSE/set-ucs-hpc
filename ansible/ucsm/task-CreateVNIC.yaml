@@ -1,0 +1,16 @@
+---
+
+  - name: Create vNIC Templates
+    ucs_vnic_template:
+      hostname: "{{ ucsm_host }}"
+      username: "{{ ucsm_user }}"
+      password: "{{ ucsm_password }}"
+      name: "eth0"
+      fabric: "A"
+      mac_pool: "{{ mac_pool_name }}"
+      mtu: "{{ vNIC_mtu }}"
+      state: "{{ deployment_state }}"
+      redundancy_type: "primary"
+      template_type: "updating-template"
+      vlans_list:
+      - name: 

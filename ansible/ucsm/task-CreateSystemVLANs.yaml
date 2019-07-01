@@ -1,0 +1,15 @@
+---
+
+  - name: Create System VLANS
+    ucs_vlans:
+      hostname: "{{ ucsm_host }}"
+      username: "{{ ucsm_user }}"
+      password: "{{ ucsm_password }}"
+      fabric: common
+      id: "{{ item.value.id }}"
+      name: "{{ item.key }}"
+      native: no
+      sharing: none
+      state: "{{ deployment_state }}"
+    with_dict: "{{ vlans }}"
+        

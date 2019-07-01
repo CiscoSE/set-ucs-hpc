@@ -5,7 +5,8 @@
       hostname: "{{ ucsm_host }}"
       username: "{{ ucsm_user }}"
       password: "{{ ucsm_password }}"
-      org_name: TestSite
-      description: Hopefully we get this right the first time
+      org_name: "{{ ucs_site_name }}"
+      description: "{{ucs_site_description }}"
+      state:  "{{ deployment_state }}"
 
 
