@@ -1,0 +1,13 @@
+---
+
+- name: Create MAC Address Pool
+  ucs_mac_pool:
+    hostname: "{{ ucsm_host }}"
+    username: "{{ ucsm_user }}"
+    password: "{{ ucsm_password }}"
+    name: "{{ map_name }}"
+    first_addr: "{{ map_first_addr }}"
+    last_addr: "{{ map_last_addr }}"
+    order: "{{ map_order }}"
+    org_dn: "{{ map_org_dn }}"
+    state: "{{ deployment_state }}"

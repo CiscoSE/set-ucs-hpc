@@ -29,7 +29,7 @@
     vars:
     - vlans:
         mgmtVlan:
-          native: "yes"
+        native: "yes"
     - vnic_fabric: "A-B"
     - vnic_mtu: "1500"
     - vnic_name: "eth0"
@@ -37,5 +37,14 @@
     - vnic_template_type: "updating-template"
     - vnic_org_dn: "org-root/org-{{ ucs_site_name }}"
          
+  # MAC Pool for VNICs
+  - include_tasks: task-CreateMACAddressPool.yaml
+    vars:
+    - map_name: "{{ ucs_site_name }}"
+    - map_first_addr: "00:25:B5:01:00:00"
+    - map_last_addr: "00:25:B5:01:00:10"
+    - map_order: "sequential"
+    - map_org_dn: "org-root/org-{{ ucs_site_name }}"
+    - state: "{{ deployment_state}}"
 
 
