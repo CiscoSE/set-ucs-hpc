@@ -5,12 +5,18 @@
       hostname: "{{ ucsm_host }}"
       username: "{{ ucsm_user }}"
       password: "{{ ucsm_password }}"
-      name: "eth0"
-      fabric: "A"
+      name: "{{ vnic_name }}"
+      fabric: "{{ vnic_fabric }}"
       mac_pool: "{{ mac_pool_name }}"
-      mtu: "{{ vNIC_mtu }}"
+      mtu: "{{ vnic_mtu }}"
       state: "{{ deployment_state }}"
-      redundancy_type: "primary"
-      template_type: "updating-template"
+      redundancy_type: "{{ vnic_redundancy_type }}"
+      template_type: "{{ vnic_template_type }}"
+      org_dn: "{{ vnic_org_dn }}"
       vlans_list:
-      - name: 
+      - name: "{{ item.key }}"
+        native: "{{ item.value.native }}"
+        state: "{{ deployment_state }}"
+        with_dict: "{{ vlans }}"
+          
+

@@ -6,13 +6,36 @@
   hosts: ucsm
   vars:
     - ucs_site_name: TestSite
-    - ucs_site_description: Lets see how this turns out
+    - ucs_site_description: Test Site for Ansible Demonstration
     - deployment_state: present
+    - mac_pool_name:
+
+  tasks:
+  - name: "Create Site {{ ucs_site_name  }}"
+    include_tasks: task-ConfigureSite.yaml
+
+  - include_tasks: task-CreateSystemVLANs.yaml
+    vars:
+    # List of VLANS to be created on the Fabric Interconnects
     - vlans:
         mgmtVlan:
          id: "50"
-        vmotion:
-         id: "51"  
-  tasks:
-  #- import_tasks: task-ConfigureSite.yaml
-  - import_tasks: task-CreateSystemVLANs.yaml
+         fabric: "common"
+         native: "no"
+         sharing: "none"
+  
+  # One VNIC Template for LINUX Host with failover
+  - include_tasks: task-CreateVNIC.yaml
+    vars:
+    - vlans:
+        mgmtVlan:
+          native: "yes"
+    - vnic_fabric: "A-B"
+    - vnic_mtu: "1500"
+    - vnic_name: "eth0"
+    - vnic_redundancy_type: "none"
+    - vnic_template_type: "updating-template"
+    - vnic_org_dn: "org-root/org-{{ ucs_site_name }}"
+         
+
+

@@ -5,11 +5,11 @@
       hostname: "{{ ucsm_host }}"
       username: "{{ ucsm_user }}"
       password: "{{ ucsm_password }}"
-      fabric: common
+      fabric: "{{ item.value.fabric }}"
       id: "{{ item.value.id }}"
       name: "{{ item.key }}"
-      native: no
-      sharing: none
+      native: "{{ item.value.native }}"
+      sharing: "{{ item.value.sharing }}"
       state: "{{ deployment_state }}"
     with_dict: "{{ vlans }}"
         
