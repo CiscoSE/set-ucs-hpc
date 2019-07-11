@@ -14,9 +14,12 @@
       template_type: "{{ vnic_template_type }}"
       org_dn: "{{ vnic_org_dn }}"
       vlans_list:
-      - name: "{{ item.key }}"
-        native: "{{ item.value.native }}"
+      - name: "mgmtVlan"
+        native: "yes"
         state: "{{ deployment_state }}"
-        with_dict: "{{ vlans }}"
+      #- name: "{{ item.key }}"
+      #  native: "{{ item.value.native }}"
+      #  state: "{{ deployment_state }}"
+      #  with_dict: "{{ vlans }}"
           
 
