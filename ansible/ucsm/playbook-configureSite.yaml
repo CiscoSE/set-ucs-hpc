@@ -8,7 +8,7 @@
     - ucs_site_name: TestSite
     - ucs_site_description: Test Site for Ansible Demonstration
     - deployment_state: present
-    - mac_pool_name:
+    - mac_pool_name: "{{ ucs_site_name }}"
 
   tasks:
   - name: "Create Site {{ ucs_site_name  }}"
@@ -18,18 +18,13 @@
     vars:
     # List of VLANS to be created on the Fabric Interconnects
     - vlans:
-        mgmtVlan:
-         id: "50"
-         fabric: "common"
-         native: "no"
-         sharing: "none"
+        { mgmtVlan: { id: "50", fabric: "common", native: "no", sharing: "none" }}
   
   # One VNIC Template for LINUX Host with failover
   - include_tasks: task-CreateVNIC.yaml
     vars:
     - vlans:
-        mgmtVlan:
-        native: "yes"
+       -  { mgmtVlan: { native: "yes" }}
     - vnic_fabric: "A-B"
     - vnic_mtu: "1500"
     - vnic_name: "eth0"
@@ -41,8 +36,8 @@
   - include_tasks: task-CreateMACAddressPool.yaml
     vars:
     - map_name: "{{ ucs_site_name }}"
-    - map_first_addr: "00:25:B5:01:00:00"
-    - map_last_addr: "00:25:B5:01:00:10"
+    - map_first_addr: "00:25:B5:02:00:00"
+    - map_last_addr: "00:25:B5:02:00:09"
     - map_order: "sequential"
     - map_org_dn: "org-root/org-{{ ucs_site_name }}"
     - state: "{{ deployment_state}}"
