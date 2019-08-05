@@ -6,9 +6,11 @@
   hosts: ucsm
   vars:
     - ucs_site_name: TestSite
+    - ucs_site_dn: "org-root/org-{{ ucs_site_name }}"
     - ucs_site_description: Test Site for Ansible Demonstration
     - deployment_state: present
     - mac_pool_name: "{{ ucs_site_name }}"
+    - ucs_bios_policy_name: "HPC"
 
   tasks:
   - name: "Create Site {{ ucs_site_name  }}"
@@ -30,7 +32,7 @@
     - vnic_name: "eth0"
     - vnic_redundancy_type: "none"
     - vnic_template_type: "updating-template"
-    - vnic_org_dn: "org-root/org-{{ ucs_site_name }}"
+    - vnic_org_dn: "{{ ucs_site_dn }}"
          
   # MAC Pool for VNICs
   - include_tasks: task-CreateMACAddressPool.yaml
@@ -39,7 +41,10 @@
     - map_first_addr: "00:25:B5:02:00:00"
     - map_last_addr: "00:25:B5:02:00:09"
     - map_order: "sequential"
-    - map_org_dn: "org-root/org-{{ ucs_site_name }}"
+    - map_org_dn: "{{ ucs_site_dn }}"
     - state: "{{ deployment_state}}"
+
+  # Create BIOS Policy for HPC
+  - include_tasks: task-CreateBIOsPolicy.yaml
 
 
