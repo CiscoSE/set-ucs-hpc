@@ -1,13 +1,18 @@
 ---
 
- - name: BIOs Policy
-   ucs_managed_objects:
-     hostname: "{{ ucsm_host }}"
-     username: "{{ ucsm_user }}"
-     password: "{{ ucsm_password }}"
-     objects:
-     - module: ucsmsdk.mometa.bios.BiosVProfile
-       class: BiosVProfile
-       properties:
-         parent_mo_or_dn:  "{{ ucs_site_dn }}"
-         name: "{{ ucs_bios_policy_name }}"
+  - name: BIOs Policy
+    ucs_managed_objects:
+      hostname: "{{ ucsm_host }}"
+      username: "{{ ucsm_user }}"
+      password: "{{ ucsm_password }}"
+      objects:
+      - module: ucsmsdk.mometa.bios.BiosVProfile
+        class: BiosVProfile
+        properties:
+          parent_mo_or_dn:  "{{ ucs_site_dn }}"
+          name: "{{ ucs_bios_policy_name }}"
+        children:
+          - module: ucsmsdk.mometa.bios.BiosVfEnhancedIntelSpeedStepTech
+            class: BiosVfEnhancedIntelSpeedStepTech
+            properties:
+              vp_enhanced_intel_speed_step_tech: 'enabled'

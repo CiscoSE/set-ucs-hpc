@@ -10,7 +10,7 @@
     - ucs_site_description: Test Site for Ansible Demonstration
     - deployment_state: present
     - mac_pool_name: "{{ ucs_site_name }}"
-    - ucs_bios_policy_name: "HPC"
+    - ucs_bios_policy_name: "HPC2"
 
   tasks:
   - name: "Create Site {{ ucs_site_name  }}"
