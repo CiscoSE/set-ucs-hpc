@@ -15,4 +15,21 @@
           - module: ucsmsdk.mometa.bios.BiosVfEnhancedIntelSpeedStepTech
             class: BiosVfEnhancedIntelSpeedStepTech
             properties:
-              vp_enhanced_intel_speed_step_tech: 'enabled'
+              vp_enhanced_intel_speed_step_tech: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfIntelHyperThreadingTech
+            class: BiosVfIntelHyperThreadingTech
+            properties:
+              vp_intel_hyper_threading_tech: disabled
+          - module: ucsmsdk.mometa.bios.BiosVfIntelVirtualizationTechnology 
+            class: BiosVfIntelVirtualizationTechnology 
+            properties:
+              vp_intel_virtualization_technology: disabled
+          - module: ucsmsdk.mometa.bios.BiosVfIntelVTForDirectedIO
+            class: BiosVfIntelVTForDirectedIO
+            properties:
+              vp_intel_vt_for_directed_io: disabled
+          - module: ucsmsdk.mometa.bios.BiosVfCPUPerformance
+            class: BiosVfCPUPerformance
+            properties:
+              vp_cpu_performance: "enterprise"
+
