@@ -48,3 +48,51 @@
             class: BiosVfPSTATECoordination
             properties:
               vp_pstate_coordination: "hw-all"
+          - module: ucsmsdk.mometa.bios.BiosVfProcessorEnergyConfiguration
+            class: BiosVfProcessorEnergyConfiguration
+            properties:
+              vp_power_technology: "performance"
+          - module: ucsmsdk.mometa.bios.BiosVfProcessorCState
+            class: BiosVfProcessorCState
+            properties:
+              vp_processor_c_state: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfProcessorC1E
+            class: BiosVfProcessorC1E
+            properties:
+              vp_processor_c1_e: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfProcessorC3Report
+            class: BiosVfProcessorC3Report
+            properties:
+              vp_processor_c3_report: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfProcessorC6Report
+            class: BiosVfProcessorC6Report
+            properties:
+              vp_processor_c6_report: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfProcessorC7Report
+            class: BiosVfProcessorC7Report
+            properties:
+              vp_processor_c7_report: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfPackageCStateLimit
+            class: BiosVfPackageCStateLimit
+            properties:
+              vp_package_c_state_limit: "no-limit"
+          - module: ucsmsdk.mometa.bios.BiosVfEnergyPerformanceTuning
+            class: BiosVfEnergyPerformanceTuning
+            properties:
+              vp_pwr_perf_tuning: "os"
+          - module: ucsmsdk.mometa.bios.BiosVfCPUHardwarePowerManagement
+            class: BiosVfCPUHardwarePowerManagement
+            properties:
+              vp_cpu_hardware_power_management: "hwpm-native-mode"
+          - module: ucsmsdk.mometa.bios.BiosVfWorkloadConfiguration
+            class: BiosVfWorkloadConfiguration
+            properties:
+              vp_workload_configuration: "balanced"
+          - module: ucsmsdk.mometa.bios.BiosVfNUMAOptimized
+            class: BiosVfNUMAOptimized
+            properties:
+              vp_numa_optimized: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfSelectMemoryRASConfiguration
+            class: BiosVfSelectMemoryRASConfiguration
+            properties:
+              vp_select_memory_ras_configuration: "maximum-performance"
