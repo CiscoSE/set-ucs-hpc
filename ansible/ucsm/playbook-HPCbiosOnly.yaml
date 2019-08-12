@@ -1,0 +1,22 @@
+---
+
+- name: HPC Template
+  gather_facts: no
+  connection: local
+  hosts: ucsm
+  vars:
+    - ucs_site_name: TestSite
+    - ucs_site_dn: "org-root/org-{{ ucs_site_name }}"
+    - ucs_site_description: Test Site for Ansible Demonstration
+    - deployment_state: present
+    - mac_pool_name: "{{ ucs_site_name }}"
+    - ucs_bios_policy_name: "HPC"
+
+  tasks:
+  - name: "Create Site {{ ucs_site_name  }}"
+    include_tasks: task-ConfigureSite.yaml
+
+  # Create BIOS Policy for HPC
+  - include_tasks: task-CreateBIOsPolicy.yaml
+
+

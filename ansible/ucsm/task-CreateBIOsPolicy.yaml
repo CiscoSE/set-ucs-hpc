@@ -96,3 +96,14 @@
             class: BiosVfSelectMemoryRASConfiguration
             properties:
               vp_select_memory_ras_configuration: "maximum-performance"
+
+
+# The following settings are not included as they are not configurable through the ucsmsdk at the time this was written.
+
+# IMC Interleaving
+# XPT Prefetch
+# LLC Prefetch
+# KTIP Prefetch
+# Sub NUMA Clustering
+
+# All of these are set correctly by default, and should not pose an issue with M5 servers.
