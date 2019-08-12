@@ -32,4 +32,19 @@
             class: BiosVfCPUPerformance
             properties:
               vp_cpu_performance: "enterprise"
-
+          - module: ucsmsdk.mometa.bios.BiosVfDirectCacheAccess
+            class: BiosVfDirectCacheAccess
+            properties: 
+              vp_direct_cache_access: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfProcessorEnergyConfiguration
+            class: BiosVfProcessorEnergyConfiguration
+            properties:
+              vp_energy_performance: energy-efficient
+          - module: ucsmsdk.mometa.bios.BiosVfIntelTurboBoostTech
+            class: BiosVfIntelTurboBoostTech
+            properties:
+              vp_intel_turbo_boost_tech: enabled
+          - module: ucsmsdk.mometa.bios.BiosVfPSTATECoordination
+            class: BiosVfPSTATECoordination
+            properties:
+              vp_pstate_coordination: "hw-all"
