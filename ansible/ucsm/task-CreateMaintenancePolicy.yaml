@@ -1,0 +1,16 @@
+---
+
+ - name: Create Maintenance Policy (UserAck)
+   ucs_managed_objects:
+      hostname: "{{ ucsm_host }}"
+      username: "{{ ucsm_user }}"
+      password: "{{ ucsm_password }}"
+      objects:
+      - module: ucsmsdk.mometa.lsmaint.LsmaintMaintPolicy
+        class: LsmaintMaintPolicy
+        properties:
+          parent_mo_or_dn:  "{{ ucs_site_dn }}"
+          uptime_disr: "user-ack"
+          name: "UserAck-OnReboot"
+          trigger_config: "on-next-boot"
+

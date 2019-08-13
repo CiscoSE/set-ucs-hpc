@@ -47,4 +47,7 @@
   # Create BIOS Policy for HPC
   - include_tasks: task-CreateBIOsPolicy.yaml
 
+  # Create User Ack Maintenance Policy
+  - include_tasks: task-CreateMaintenancePolicy.yaml
+
 
