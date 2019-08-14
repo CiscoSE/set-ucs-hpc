@@ -19,3 +19,5 @@
           name: "Mirrored-LD"
           mode: "raid-mirrored"
           descr: "Mirrored Local Disk from RAID Controller"
+
+# We are not doing anything here to support an M.2 option, as that would require additional BIOS changes.
