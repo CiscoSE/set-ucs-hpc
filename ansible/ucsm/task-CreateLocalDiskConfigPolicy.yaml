@@ -1,0 +1,21 @@
+---
+ - name: Create Local Disk Configuration Policy
+   ucs_managed_objects:
+      hostname: "{{ ucsm_host }}"
+      username: "{{ ucsm_user }}"
+      password: "{{ ucsm_password }}"
+      objects:
+      - module: ucsmsdk.mometa.storage.StorageLocalDiskConfigPolicy
+        class: StorageLocalDiskConfigPolicy
+        properties:
+          parent_mo_or_dn:  "{{ ucs_site_dn }}"
+          name: "BootFromSAN-NLD"
+          descr: "Boot from SAN, No local Disks."
+          mode: "no-local-storage"
+      - module: ucsmsdk.mometa.storage.StorageLocalDiskConfigPolicy
+        class: StorageLocalDiskConfigPolicy
+        properties:
+          parent_mo_or_dn: "{{ ucs_site_dn }}"
+          name: "Mirrored-LD"
+          mode: "raid-mirrored"
+          descr: "Mirrored Local Disk from RAID Controller"

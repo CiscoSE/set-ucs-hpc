@@ -50,4 +50,6 @@
   # Create User Ack Maintenance Policy
   - include_tasks: task-CreateMaintenancePolicy.yaml
 
+  # Create Local Disk Configuration Policies
+  - include_tasks: task-CreateLocalDiskConfigPolicy.yaml
 
