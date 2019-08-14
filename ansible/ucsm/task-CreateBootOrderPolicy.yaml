@@ -1,0 +1,39 @@
+---
+ - name: Create Boot Order Policy
+   ucs_managed_objects:
+     hostname: "{{ ucsm_host }}"
+     username: "{{ ucsm_user }}"
+     password: "{{ ucsm_password }}"
+     objects:
+     - module: ucsmsdk.mometa.lsboot.LsbootPolicy
+       class: LsbootPolicy
+       properties:
+         parent_mo_or_dn: "{{ ucs_site_dn }}"
+         name: "HDDThenCD"
+         reboot_on_update: "no"
+       children:
+         - module: ucsmsdk.mometa.lsboot.LsbootVirtualMedia
+           class: LsbootVirtualMedia
+           properties:
+             access: "read-only"
+             lun_id: "0"
+             order: "2"
+         - module: ucsmsdk.mometa.lsboot.LsbootVirtualMedia
+           class: LsbootVirtualMedia
+           properties:
+             access: "read-only-remote-cimc"
+             lun_id: "0"
+             order: "3"
+         - module: ucsmsdk.mometa.lsboot.LsbootStorage
+           class: LsbootStorage
+           properties:
+             order: "1"
+           children:
+             - module: ucsmsdk.mometa.lsboot.LsbootLocalStorage
+               class: LsbootLocalStorage
+               properties: {}
+               children:
+                 - module: ucsmsdk.mometa.lsboot.LsbootDefaultLocalImage
+                   class: LsbootDefaultLocalImage
+                   properties:
+                     order: "1"

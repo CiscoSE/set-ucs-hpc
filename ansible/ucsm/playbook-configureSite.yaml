@@ -53,3 +53,5 @@
   # Create Local Disk Configuration Policies
   - include_tasks: task-CreateLocalDiskConfigPolicy.yaml
 
+  # Create Boot Order Policy. Disk First, CD Second
+  - include_tasks: task-CreateBootOrderPolicy.yaml
