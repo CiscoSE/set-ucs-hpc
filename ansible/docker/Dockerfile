@@ -1,5 +1,5 @@
 # Using the CENTOS container from the docker library
-FROM centos:latest
+FROM centos:7.6.1810
 # Want the image completely patched. Have not tested without this.
 RUN yum update -y
 
