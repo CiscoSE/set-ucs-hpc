@@ -1,2 +1,6 @@
-This docker file creates a docker container based on CentOS and includes Ansible, ucsmsdk and imcsdk. Ansible will use python 3.6, while the SDKs use 2.7. 
-Note that ansible is loaded with PIP3 in order to ensure it works with Python 3.6. This was done because ansible had connection problems with UCS when running under python 2.7.
+Two docker files are provided for creating Docker containers. 
+
+1)  7.6/Dockerfile creates a docker container based on CentOS 7.6.
+2)  8.0/Dockerfile creates a docker container based on CentOS 8.0
+
+The latest ucssdk, and the latest imcsdk will be installed via PIP. The latest version of Ansible is also installed with PIP3. The 7.6 dockerfile is currently working, but the 8.0 dockerfile is a work in progress.
