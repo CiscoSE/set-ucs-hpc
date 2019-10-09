@@ -1,4 +1,4 @@
-Two docker files are provided for creating Docker containers. 
+Two docker files are provided for creating Docker containers for use with the Ansible examples provided in this repository. 
 
 1)  7.6/Dockerfile creates a docker container based on CentOS 7.6.
 2)  8.0/Dockerfile creates a docker container based on CentOS 8.0
