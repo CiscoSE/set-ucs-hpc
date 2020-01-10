@@ -1,0 +1,13 @@
+---
+    - name: Configure vMedia
+      imc_rest:
+        hostname: '{{imc_host}}'
+        username: '{{imc_user}}'
+        password: '{{imc_password}}'
+        validate_certs: no
+        content: |
+                <configConfMo><inConfig>
+                <commVMediaMap map="{{ firmware_map }}" dn="sys/svc-ext/vmedia-svc/vmmap-{{ firmware_vol_name }}" volumeName="{{ firmware_vol_name }}" remoteShare="{{ firmware_rshare }}" remoteFile="{{ firmware_rfile }}" /> 
+                </inConfig> </configConfMo>
+
+

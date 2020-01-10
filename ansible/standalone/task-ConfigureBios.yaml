@@ -57,7 +57,7 @@
         <!-- Default setting retained for DCU Prefetcher -->
         <biosVfDCUPrefetch rn='DCU-Prefetch' vpStreamerPrefetch='enabled' vpIPPrefetch='enabled'></biosVfDCUPrefetch>
         <!-- Default setting retained for Legacy USB Support -->
-        <biosVfLegacyUSBSupport rn='LegacyUSB-Support' vpLegacyUSBSupport='disabled'></biosVfLegacyUSBSupport>
+        <biosVfLegacyUSBSupport rn='LegacyUSB-Support' vpLegacyUSBSupport='enabled'></biosVfLegacyUSBSupport>
         <!-- LOM Option ROM Disabled. This script uses the MLOM for PXE -->
         <biosVfLOMPortOptionROM rn='LOMPort-OptionROM' vpLOMPortsAllState='Disabled' vpLOMPort0State='Disabled' vpLOMPort1State='Disabled'></biosVfLOMPortOptionROM>
         <!-- PCI slots Disabled. MLOM, M.2 and HBA enabled --> 
