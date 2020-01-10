@@ -1,18 +1,33 @@
+
+############################
+# List of machines in a machine group
+############################
+[Lab_C240_M5]
+#Your systems go here. Add each system on a new line.
+TestSystem1	imc_host=<IpOrNameOfHost>
+
+############################
+# Attributes used by all hosts in this inventory file.
+############################
+
 [all:vars]
 imc_user=admin
 imc_password=password
 
-[Lab_C240_M5]
-#Your systems go here. Add each system on a new line.
-TestSystem1	imc_host=10.0.0.1
-
-[Lab_C240_M5:vars]
-#Path to your web server goes here
-firmware_rshare=http://<yourIP>/cisco/firmware/
-#File name must be seperate from the path above
-firmware_rfile=ucs-c240m5-huu-4.0.4h.iso
+############################
+# Common Variables for firmware Updates
+############################
+#IP address of server holding firmware
+firmware_ip=<YourServerIP>
 #This example only supports web method of mapping drive
 firmware_map=www
 #The volume name is just a friendly name for the mapping
 firmware_vol_name=Firmware
+#Path to your web server goes here
+firmware_path=/cisco/firmware/
+
+
+[Lab_C240_M5:vars]
+#File name must be separate from the path above
+firmware_file=ucs-c240m5-huu-4.0.2d.iso
 
