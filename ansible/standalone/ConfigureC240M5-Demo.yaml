@@ -3,7 +3,7 @@
 - name: Configure C Series Servers in inventory file
   gather_facts: no
   connection: local
-  hosts: imc
+  hosts: Lab_C240_M5
   tasks:
   - import_tasks: task-PowerOnServer.yaml
   - import_tasks: task-ConfigureBios.yaml
