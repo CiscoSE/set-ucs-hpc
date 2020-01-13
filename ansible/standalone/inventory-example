@@ -23,7 +23,7 @@ firmware_ip=<YourServerIP>
 firmware_map=www
 #The volume name is just a friendly name for the mapping
 firmware_vol_name=Firmware
-#Path to your web server goes here
+#Path on your web server goes here
 firmware_path=/cisco/firmware/
 
 
