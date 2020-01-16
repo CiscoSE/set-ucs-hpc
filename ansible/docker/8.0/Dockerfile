@@ -5,7 +5,7 @@ FROM centos:8
 RUN yum install epel-release python3 python3-pip git vim -y && \
 pip3 install --upgrade pip
 
-# Install the ucsmsdk using the 2.7 version of pip.
+# Install the Ansible and UCS compenents.
 RUN pip3 install ucsmsdk imcsdk xmljson lxml ansible
 
 
