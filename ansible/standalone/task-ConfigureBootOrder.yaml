@@ -1,0 +1,35 @@
+   - name: Remove old entries
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo>
+        <inConfig>
+        <lsbootDevPrecision dn="sys/rack-unit-1/boot-precision" rebootOnUpdate="no" configuredBootMode="Legacy" >
+        <lsbootHdd name="LocalHardDrive" type="LOCALHDD" order="1" state="enabled" rn="hdd-LocalHardDrive" status="removed">
+        </lsbootHdd>
+        <lsbootPxe name="PXE1" type="PXE" iptype="IPv4" slot="MLOM" port="1" order="2" state="enabled" rn="pxe-PXE1" status="removed">
+        </lsbootPxe></lsbootDevPrecision>
+        </inConfig>
+        </configConfMo>
+     when: removeBootOrderSettings == true
+   
+   - name: Configure Boot Order through XML API
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo>
+        <inConfig>
+        <lsbootDevPrecision dn="sys/rack-unit-1/boot-precision" rebootOnUpdate="no" configuredBootMode="Legacy" >
+        <lsbootPchStorage name="SATA-Storage" order='1' type='PCHSTORAGE' state='enabled' rn="pchstorage-SATA-Storage">
+        </lsbootPchStorage>
+        <lsbootPxe name="PXE1" type="PXE" iptype="IPv4" slot="MLOM" port="1" order="2" state="enabled" rn="pxe-PXE1">
+        </lsbootPxe></lsbootDevPrecision>
+        </inConfig> 
+        </configConfMo>
+  

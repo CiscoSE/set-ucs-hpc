@@ -13,6 +13,10 @@ TestSystem1	imc_host=<IpOrNameOfHost>
 [all:vars]
 imc_user=admin
 imc_password=password
+ntpServer1=ntp1.yourdomain.com
+ntpServer2=
+ntpServer3=
+ntpServer4=
 
 ############################
 # Common Variables for firmware Updates

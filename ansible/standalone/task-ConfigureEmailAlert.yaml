@@ -1,0 +1,16 @@
+   - name: Configuring email entry 1
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo><inConfig>
+        <commMailAlert dn="sys/svc-ext/mail-alert-svc" adminState="enabled" port="25" minSeverityLevel="warning" ipAddress="{{ smtpServer}}" fromAddress="{{ sourceEmail }}" >
+        <mailRecipient id="1" email="{{ emailDest1 }}" rn="mail-recipient-1" ></mailRecipient>
+        </commMailAlert>
+        </inConfig> </configConfMo>
+     when: (emailDest1 is defined) and
+           (smtpServer is defined) and
+           (sourceEmail is defined)
+

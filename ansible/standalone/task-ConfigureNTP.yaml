@@ -1,0 +1,47 @@
+   - name: Configuring NTP Entry 1
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo><inConfig>
+        <commNtpProvider dn="sys/svc-ext/ntp-svc" ntpEnable="yes" ntpServer1="{{ ntpServer1 }}"></commNtpProvider>
+        </inConfig> </configConfMo>
+     when: ntpServer1 is defined
+
+   - name: Configuring NTP Entry 2
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo><inConfig>
+        <commNtpProvider dn="sys/svc-ext/ntp-svc" ntpEnable="yes" ntpServer2="{{ ntpServer2 }}"></commNtpProvider>
+        </inConfig> </configConfMo>
+     when: ntpServer2 is defined
+
+   - name: Configuring NTP Entry 3
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo><inConfig>
+        <commNtpProvider dn="sys/svc-ext/ntp-svc" ntpEnable="yes" ntpServer3="{{ ntpServer3 }}"></commNtpProvider>
+        </inConfig> </configConfMo>
+     when: ntpServer3 is defined
+
+   - name: Configuring NTP Entry 4
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo><inConfig>
+        <commNtpProvider dn="sys/svc-ext/ntp-svc" ntpEnable="yes" ntpServer4="{{ ntpServer4 }}"></commNtpProvider>
+        </inConfig> </configConfMo>
+     when: ntpServer4 is defined
