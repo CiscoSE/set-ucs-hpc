@@ -17,6 +17,9 @@ ntpServer1=ntp1.yourdomain.com
 ntpServer2=
 ntpServer3=
 ntpServer4=
+smtpServer=1.1.1.1
+emailDest1=srehling@cisco.com
+removeBootOrderSettings=false
 
 ############################
 # Common Variables for firmware Updates
