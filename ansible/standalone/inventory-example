@@ -18,7 +18,7 @@ ntpServer2=
 ntpServer3=
 ntpServer4=
 smtpServer=1.1.1.1
-emailDest1=srehling@cisco.com
+emailDest1=someoneyouwanttoemail@yourdomain.com
 removeBootOrderSettings=false
 
 ############################
