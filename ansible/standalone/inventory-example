@@ -4,7 +4,7 @@
 ############################
 [Lab_C240_M5]
 #Your systems go here. Add each system on a new line.
-TestSystem1	imc_host=<IpOrNameOfHost>
+TestSystem1	imc_host=<IpOrNameOfHost> sourceEmail=<TestSystem1@yourdomain.com>
 
 ############################
 # Attributes used by all hosts in this inventory file.
