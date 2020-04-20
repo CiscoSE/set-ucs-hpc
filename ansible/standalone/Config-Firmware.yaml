@@ -5,4 +5,4 @@
   connection: local
   hosts: Lab_C240_M5
   tasks:
-  - import_tasks: task-FirmwareUpdate.yaml
+  - import_tasks: tasks/task-FirmwareUpdate.yaml
