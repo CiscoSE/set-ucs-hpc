@@ -8,7 +8,7 @@
         validate_certs: no
         content: |
           <configConfMo><inConfig>
-          <computeRackUnit dn="sys/rack-unit-1" adminPower="down"/>
+          <computeRackUnit dn="sys/rack-unit-1" adminPower="soft-shut-down"/>
           </inConfig></configConfMo>
 
     - name: Pause for server to shutdown
