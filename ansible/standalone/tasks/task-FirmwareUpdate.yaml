@@ -16,5 +16,8 @@
           verifyUpdate='yes' 
           updateComponent='all,hdd' 
           updateType='immediate' 
+          doForceDown='yes' 
+          skipMemoryTest="Enabled" 
+          gracefulTimeout='3' 
           bootMedium="vmedia" adminState="trigger" />
           </inConfig></configConfMo>

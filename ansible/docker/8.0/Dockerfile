@@ -1,11 +1,14 @@
 # Using the CENTOS container from the docker library
-FROM centos:8
+FROM centos:latest
+
+# Install latest updates from repo
+RUN dnf update -y
 
 # Requirements for Ansible and the ucs sdks
-RUN yum install epel-release python3 python3-pip git vim -y && \
+RUN dnf install epel-release python3 python3-pip git vim -y && \
 pip3 install --upgrade pip
 
 # Install the Ansible and UCS compenents.
-RUN pip3 install ucsmsdk imcsdk xmljson lxml ansible
+RUN pip install ucsmsdk imcsdk xmljson lxml ansible
 
 
