@@ -1,0 +1,8 @@
+---
+
+- name: Configure C Series Servers DNS settings
+  gather_facts: no
+  connection: local
+  hosts: Lab_C240_M5
+  tasks:
+  - import_tasks: tasks/task-ConfigureImcDNS.yaml

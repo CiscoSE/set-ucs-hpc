@@ -37,4 +37,7 @@ firmware_path=/cisco/firmware/
 [Lab_C240_M5:vars]
 #File name must be separate from the path above
 firmware_file=ucs-c240m5-huu-4.0.2d.iso
+#DNS Settings
+dnsServer1=1.1.2.10
+dnsServer2=1.1.2.11      # Not yet implemented.
 

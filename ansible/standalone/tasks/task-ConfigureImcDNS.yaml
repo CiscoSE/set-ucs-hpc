@@ -1,0 +1,11 @@
+   - name: Configuring DNS Entry 1
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo><inConfig>
+        <mgmtif dn="sys/rack-unit-1/mgmt/if-1" dnsPreferred="{{ dnsServer1 }}"></mgmtif>
+        </inConfig> </configConfMo>
+     when: dnsServer1 is defined
