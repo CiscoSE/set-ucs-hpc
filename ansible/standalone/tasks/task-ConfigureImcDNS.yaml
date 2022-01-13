@@ -6,6 +6,6 @@
        validate_certs: no
        content: |
         <configConfMo><inConfig>
-        <mgmtif dn="sys/rack-unit-1/mgmt/if-1" dnsPreferred="{{ dnsServer1 }}"></mgmtif>
+        <mgmtIf dn="sys/rack-unit-1/mgmt/if-1" dnsPreferred="{{ dnsServer1 }}"></mgmtIf>
         </inConfig> </configConfMo>
      when: dnsServer1 is defined
