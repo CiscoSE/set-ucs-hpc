@@ -1,4 +1,4 @@
-   - name: Configuring DNS Entry 1
+   - name: Configuring DNS Entry Primary
      imc_rest:
        hostname: '{{imc_host}}'
        username: '{{imc_user}}'
@@ -8,4 +8,18 @@
         <configConfMo><inConfig>
         <mgmtIf dn="sys/rack-unit-1/mgmt/if-1" dnsPreferred="{{ dnsServer1 }}"></mgmtIf>
         </inConfig> </configConfMo>
-     when: dnsServer1 is defined
+     when: dnsServer1 is defined and not dnsServer2 is defined
+
+
+   - name: Configuring DNS Entry Primary and Alternate
+     imc_rest:
+       hostname: '{{imc_host}}'
+       username: '{{imc_user}}'
+       password: '{{imc_password}}'
+       validate_certs: no
+       content: |
+        <configConfMo><inConfig>
+        <mgmtIf dn="sys/rack-unit-1/mgmt/if-1" dnsPreferred="{{ dnsServer1 }}" dnsAlternate="{{ dnsServer2 }}"></mgmtIf>
+        </inConfig> </configConfMo>
+     when: dnsServer1 is defined and dnsServer2 is defined
+
